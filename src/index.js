@@ -8,9 +8,9 @@ const typeDefs = gql`
 `;
 
 const resolvers = {
-    Query: {
-        hello: () => 'hello there!!',
-    }
+  Query: {
+    hello: () => 'hello there!!',
+  },
 };
 
 
@@ -20,10 +20,10 @@ const server = new ApolloServer({ typeDefs, resolvers, context: {} });
 server.applyMiddleware({ app, path: '/api' });
 
 app.get('*', (req, res) => {
-    res.send('We are here!!!!');
-})
+  res.send('We are here!!!!');
+});
 
 
 app.listen(port, () => {
-    console.log(`****GraphQL API running at http://localhost:${port}/${server.graphqlPath}******`);
-})
+  console.log(`****GraphQL API running at http://localhost:${port}/${server.graphqlPath}******`);
+});
