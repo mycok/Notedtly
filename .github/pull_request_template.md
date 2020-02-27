@@ -16,13 +16,13 @@
 
 `Development Environment setup`
 
-- clone the repository and run `cd bank_statement_analyzer` to change to the project directory
-- run `gradle build` command to install all the necessary dependencies and build the application
-- run `gradle run` command to run the application
+- clone the repository and run `cd Notedtly` to change to the project directory
+- run `yarn install` command to install all the necessary dependencies and build the application
+- run `yarn start` or `yarn dev` command to run the application
 
 `Test Environment setup`
 
-- run `gradle test` command to run all tests
+- run `yarn test:coverage` command to run all tests
 
 #### Add background context if any
 
