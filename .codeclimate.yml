@@ -1,0 +1,30 @@
+plugins:
+    duplication:
+      enabled: true
+      config:
+        languages:
+          javascript:
+            mass_threshold: 60
+exclude_patterns:
+    - "config/"
+    - "db/"
+    - "dist/"
+    - "features/"
+    - "**/node_modules/"
+    - "script/"
+    - "**/spec/"
+    - "**/test/"
+    - "**/tests/"
+    - "Tests/"
+    - "**/vendor/"
+    - "**/*_test.go"
+    - "**/*.d.ts"
+    - "test/**"
+    - "**/__tests__/**"
+    - "**/node_modules/**"
+    - "dist/"
+    - "spec/"
+    - "src/**/*.test.js"
+    - "**/tests/**"
+
+
