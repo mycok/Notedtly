@@ -23,4 +23,4 @@ COPY . /usr/src/
 EXPOSE 4000
 
 # run the server
-CMD ["yarn", "start"]
+CMD ["yarn", "dev"]
