@@ -15,7 +15,9 @@
 .env.development.local
 .env.test.local
 .env.production.local
-.env
+.env.test
+/env/*
+**env/**
 dist
 
 npm-debug.log*
@@ -23,6 +25,5 @@ yarn-debug.log*
 yarn-error.log*
 **.log
 .nyc_output
-/envs
 **.vscode
 

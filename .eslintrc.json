@@ -15,5 +15,17 @@
         "sourceType": "module"
     },
     "rules": {
-    }
+    },
+    "overrides": [
+        {
+            "files": ["*.test.js"],
+            "env": {
+                "mocha": true
+            },
+            "rules": {
+                "func-names": "off",
+                "prefer-arrow-callback": "off"
+            }
+        }
+    ]
 }
