@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test:e2e": "dotenv -e ./env/.env.test -e ./env/.env mocha --recursive -- 'test/**/*.test.js' --require @babel/register",
-    "test:coverage": "nyc yarn run test:e2e",
+    "test:coverage": "nyc --reporter=html --reporter=text yarn run test:e2e",
     "build": "rimraf dist && babel -D ./src -d ./dist",
     "dev": "yarn run build && dotenv -e ./env/.env nodemon -- node ./dist/index.js",
     "start": "yarn build && pm2 start ./dist/index.js",
@@ -29,14 +29,18 @@
   },
   "homepage": "https://github.com/mycok/Notedtly#readme",
   "dependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.4",
     "apollo-server-express": "^2.10.1",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "graphql": "^14.6.0",
-    "pm2": "^4.2.3"
+    "helmet": "^3.21.3",
+    "pm2": "^4.2.3",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.7",
     "@babel/preset-env": "^7.8.4",
     "@babel/register": "^7.8.6",
     "chai": "^4.2.0",

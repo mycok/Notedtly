@@ -1,7 +1,8 @@
 import { app, server } from './server';
+import logger from './utils/logger';
 
 const port = process.env.PORT;
 
 app.listen(port, () => {
-  console.log(`****GraphQL API running at http://localhost:${port}/${server.graphqlPath}******`);
+  logger.info(`****GraphQL API running at http://localhost:${port}/${server.graphqlPath}******`);
 });
