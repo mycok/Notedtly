@@ -26,5 +26,5 @@ cache:
     npm: false
     yarn: false
 
-after_success:
+after_script:
   - ./cc-test-reporter after-build
