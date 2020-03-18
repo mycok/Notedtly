@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "description": "Social note application",
   "main": "index.js",
+  "engines": {
+    "node": "12.13.1"
+  },
   "scripts": {
+    "preinstall": "yarn global add rimraf",
     "test:e2e": "dotenv -e ./env/.env.test -e ./env/.env mocha --recursive -- 'test/**/*.test.js' --require @babel/register",
     "test:coverage": "nyc --reporter=html --reporter=text yarn run test:e2e",
     "build": "rimraf dist && babel -D ./src -d ./dist",
     "dev": "yarn run build && dotenv -e ./env/.env nodemon -- node ./dist/index.js",
-    "start": "yarn build && pm2 start ./dist/index.js",
+    "serve": "yarn build && pm2 start ./dist/index.js",
+    "serve:heroku": "yarn build && node ./dist/index.js",
     "lint": "eslint ./src ./test",
     "lint:fix": "eslint ./src ./test --fix"
   },
