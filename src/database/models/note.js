@@ -4,7 +4,8 @@ const NoteSchema = new Schema({
   content: {
     type: String,
     required: true,
-    maxlength: 2,
+    minLength: 2,
+    unique: true,
   },
   author: {
     type: String,
