@@ -2,3 +2,5 @@
 
 # Notedtly
 A social note application
+
+[checkout the documentation here!](https://notedtly-api.herokuapp.com/swagger)
