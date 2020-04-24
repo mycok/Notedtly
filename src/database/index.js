@@ -21,6 +21,8 @@ export const dbConnection = (mongoUri) => {
   });
 };
 
-export const close = () => {
-  mongoose.connection.close();
+export const close = async () => {
+  mongoose.connection.close(() => {
+    logger.info('.....database connection closed.....');
+  });
 };

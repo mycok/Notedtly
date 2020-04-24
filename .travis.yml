@@ -11,13 +11,14 @@ install:
 env:
   global:
     - NODE_ENV=test
+    - MONGODB_URI=mongodb://localhost:27017/test
 
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
   - sleep 15
-  - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
+  - mongo test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
 
 script:
   - yarn test:coverage
