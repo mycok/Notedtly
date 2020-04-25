@@ -12,6 +12,7 @@ env:
   global:
     - NODE_ENV=test
     - MONGODB_URI=mongodb://localhost:27017/test
+    - SECRET_KEY='random-secret-key'
 
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter

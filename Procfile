@@ -1,2 +1,1 @@
-web: yarn run serve:heroku
-
+web: yarn run start
