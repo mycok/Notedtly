@@ -4,12 +4,21 @@ const NoteSchema = new Schema({
   content: {
     type: String,
     required: true,
-    minLength: 2,
-    unique: true,
+    trim: true,
+    minlength: 3,
+    index: { unique: true },
   },
   author: {
-    type: String,
-    required: true,
+    type: Schema.ObjectId,
+    ref: 'User',
+  },
+  favoritedBy: [{
+    type: Schema.ObjectId,
+    ref: 'User',
+  }],
+  favoriteCount: {
+    type: Number,
+    default: 0,
   },
 }, { timestamps: true });
 
