@@ -20,7 +20,8 @@
         "prefer-arrow-callback": "off",
         "no-underscore-dangle": "off",
         "object-shorthand": "off",
-        "no-useless-escape": "off"
+        "no-useless-escape": "off",
+        "no-param-reassign": "off"
     },
     "overrides": [
         {

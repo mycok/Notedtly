@@ -1,7 +1,7 @@
-import { Query } from './query';
-import { Mutation } from './mutation';
+import { noteQueries, userQueries } from './queries';
+import { authMutations, noteMutations } from './mutations';
 
 export const resolvers = {
-  Query,
-  Mutation,
+  Query: { ...noteQueries, ...userQueries },
+  Mutation: { ...authMutations, ...noteMutations },
 };
