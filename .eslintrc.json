@@ -21,7 +21,8 @@
         "no-underscore-dangle": "off",
         "object-shorthand": "off",
         "no-useless-escape": "off",
-        "no-param-reassign": "off"
+        "no-param-reassign": "off",
+        "import/no-extraneous-dependencies": "off"
     },
     "overrides": [
         {

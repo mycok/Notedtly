@@ -31,6 +31,19 @@ describe('User authentication', () => {
     });
   });
 
+  context('when a user tries to signup again while providing the same valid values ', () => {
+    it('should throw an ApolloError', async () => {
+      const res = await signUp(baseUrl, {
+        username: 'test-user',
+        email: 'test@now.com',
+        password: 'testPass#4',
+      });
+
+      const response = JSON.parse(res.text);
+      expect(response).to.have.property('errors');
+    });
+  });
+
   context('when a user provides invalid email for signUp ', () => {
     it('should throw a UserInputError', async () => {
       const res = await signUp(baseUrl, {
