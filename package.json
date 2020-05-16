@@ -15,7 +15,8 @@
     "serve": "yarn run build && pm2 start dist/index.js",
     "start": "node dist/index.js",
     "lint": "eslint ./src ./tests",
-    "lint:fix": "eslint ./src ./tests --fix"
+    "lint:fix": "eslint ./src ./tests --fix",
+    "seed": "dotenv -e ./env/.env node dist/database/seed/index.js"
   },
   "repository": {
     "type": "git",
@@ -57,8 +58,11 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
+    "faker": "^4.1.0",
+    "gravatar": "^1.8.0",
     "husky": "^4.2.3",
     "mocha": "^7.1.0",
+    "node-fetch": "^2.6.0",
     "nodemon": "^2.0.2",
     "nyc": "^15.0.0",
     "rimraf": "^3.0.2"

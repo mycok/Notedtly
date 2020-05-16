@@ -6,7 +6,6 @@ const NoteSchema = new Schema({
     required: true,
     trim: true,
     minlength: 3,
-    index: { unique: true },
   },
   author: {
     type: Schema.ObjectId,

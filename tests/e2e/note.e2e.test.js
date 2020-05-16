@@ -62,20 +62,6 @@ describe('Note CRUD', () => {
     });
   });
 
-  context('when a user tries to create a new note with the same content property value', () => {
-    it('should throw an ApolloError', async () => {
-      const res = await createNote(baseUrl,
-        {
-          content: 'testing successful note creation',
-        },
-        user.token);
-
-      const response = JSON.parse(res.text);
-
-      expect(response).to.have.property('errors');
-    });
-  });
-
   context('when a user tries to create a new note without first logging in', () => {
     it('should throw an AuthenticationError', async () => {
       const mutation = {
@@ -128,21 +114,6 @@ describe('Note CRUD', () => {
       const response = JSON.parse(res.text);
       expect(response).to.have.property('errors');
       expect(response.errors[0].message).to.equal('Context creation failed: Invalid / Expired token, please login');
-    });
-  });
-
-  context('when a user sends a newNote mutation with a token that resolves to a non existant user', () => {
-    it('should throw an AuthenticationError', async () => {
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWE4M2FiOGU5MzBjYTEwNTUyNjNjMzciLCJpYXQiOjE1ODgyMDU0MDEsImV4cCI6MTU4ODI5MTgwMX0.p-l4R4NIA0Ad6ChHCaHwz06wLHQPnz8J0VGfyR_E2nw';
-      const res = await createNote(baseUrl,
-        {
-          content: 'testing successful note creation',
-        },
-        token);
-
-      const response = JSON.parse(res.text);
-      expect(response).to.have.property('errors');
-      expect(response.errors[0].message).to.equal('Context creation failed: User not found');
     });
   });
 
@@ -279,6 +250,23 @@ describe('Note CRUD', () => {
       const response = JSON.parse(res.text);
       expect(response).to.have.property('errors');
       expect(response.errors[0].message).to.equal('Note matching ID not found');
+    });
+  });
+
+  context('when a user sends a newNote mutation with a token that resolves to a non existant user', () => {
+    before(async () => {
+      await db.models.User.deleteOne({ _id: user._id });
+    })
+    it('should throw an AuthenticationError', async () => {
+      const res = await createNote(baseUrl,
+        {
+          content: 'testing successful note creation',
+        },
+        user.token);
+
+      const response = JSON.parse(res.text);
+      expect(response).to.have.property('errors');
+      expect(response.errors[0].message).to.equal('Context creation failed: User not found');
     });
   });
 });
