@@ -6,17 +6,23 @@ import { noteAuthorization } from '../../middleware/authorization/note';
 
 export const noteMutations = {
   newNote: async (obj, { content }, { user, models }) => {
+    let note;
+    let err;
     try {
-      const note = await models.Note.create({
+      note = await models.Note.create({
         content,
         author: Types.ObjectId(user._id),
       });
-
-      return note;
     } catch (error) {
+      err = error;
       const errMsg = handleErrorMessages(error);
       throw new ApolloError(errMsg, 'DB_ERROR');
+    } finally {
+      if (!err) {
+        await models.User.findByIdAndUpdate(user._id, { $push: { notes: note._id } });
+      }
     }
+    return note;
   },
   updateNote: async (obj, { id, content }, { user, models }) => {
     await noteAuthorization(id, user, models);

@@ -20,7 +20,7 @@ const seed = async () => {
           });
       })
       .catch(() => {
-        logger.error('something is wrong');
+        logger.error('....something is wrong...');
         process.exit(0);
       });
   }, 1000);
