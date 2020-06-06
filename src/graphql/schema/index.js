@@ -41,6 +41,7 @@ export const typeDefs = gql`
         notes: [Note]!
         note(id: ID!): Note @authentication
         noteFeed(cursor: String): NoteFeed!
+        notesByAuthor(id: ID!): [Note]!
     },
     type Mutation {
         newNote(content: String!): Note @authentication

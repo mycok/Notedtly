@@ -12,6 +12,13 @@ export const noteQueries = {
       .populate('favoritedBy');
     return note;
   },
+  notesByAuthor: async (obj, { id }, { models }) => {
+    const notes = await models.Note.find({ author: id })
+      .populate('author')
+      .populate('favoritedBy');
+
+    return notes;
+  },
   noteFeed: async (obj, { cursor }, { models }) => {
     const limit = 10;
     let hasNextPage = false;
