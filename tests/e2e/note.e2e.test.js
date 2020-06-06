@@ -9,6 +9,7 @@ import { app } from '../../src/server';
 import { fetchAllNotes } from '../setup/queries/note/notes';
 import { createNote } from '../setup/queries/note/newNote';
 import { fetchNoteById } from '../setup/queries/note/note';
+import { fetchNotesByAuthor } from '../setup/queries/note/notesByAuthor';
 import { updateNoteById } from '../setup/queries/note/updateNote';
 import { deleteNoteById } from '../setup/queries/note/deleteNote';
 import { noteFeed } from '../setup/queries/note/noteFeed';
@@ -180,6 +181,14 @@ describe('Note CRUD', () => {
       expect(res.body.data.noteFeed.notes.length).to.be.equal(3);
       expect(res.body.data.noteFeed.cursor).to.be.equal('done');
       expect(res.body.data.noteFeed.hasNextPage).to.be.equal(false);
+    });
+  });
+
+  context('when a user sends a request to fetch all notes authored by a user matching the provided id', () => {
+    it('he / she should get a response with a list of all matching notes', async () => {
+      const res = await fetchNotesByAuthor(baseUrl, { id: user._id }, user.token);
+
+      expect(res.body.data.notesByAuthor.length).to.be.equal(13);
     });
   });
 
