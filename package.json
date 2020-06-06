@@ -4,7 +4,7 @@
   "description": "Social note application",
   "main": "index.js",
   "engines": {
-    "node": "12.13.1"
+    "node": "12.16.3"
   },
   "scripts": {
     "preinstall": "yarn global add rimraf",

@@ -120,6 +120,7 @@ describe('Note CRUD', () => {
   context('when a user sends a query to fetch all notes', () => {
     it('should return an array of notes', async () => {
       const res = await fetchAllNotes(baseUrl);
+
       res.body.should.have.property('data');
       res.body.data.should.have.property('notes');
       expect(res.body.data.notes).to.be.an('array');
@@ -256,7 +257,7 @@ describe('Note CRUD', () => {
   context('when a user sends a newNote mutation with a token that resolves to a non existant user', () => {
     before(async () => {
       await db.models.User.deleteOne({ _id: user._id });
-    })
+    });
     it('should throw an AuthenticationError', async () => {
       const res = await createNote(baseUrl,
         {

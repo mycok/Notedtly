@@ -23,6 +23,8 @@ export const noteQueries = {
     // if the cursor is not provided, the query will fetch the latest ten notes
     // sorted by the latest based on _id
     let notes = await models.Note.find(cursorQuery)
+      .populate('author')
+      .populate('favoritedBy')
       .sort({ _id: -1 })
       .limit(limit + 1);
     // if the returned notes are greater than the limit
