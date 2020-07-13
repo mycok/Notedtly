@@ -1,7 +1,9 @@
-import { noteQueries } from './note';
-import { userQueries } from './user';
+import { noteQueries, noteTypeResolvers } from './note';
+import { userQueries, userTypeResolvers } from './user';
 
 export {
   noteQueries,
   userQueries,
+  userTypeResolvers,
+  noteTypeResolvers,
 };
