@@ -3,19 +3,23 @@ export const noteQueries = {
     const notes = await models.Note.find({})
       .populate('author')
       .populate('favoritedBy')
-      .limit(100);
+      .limit(10)
+      .sort({ _id: -1 });
+
     return notes;
   },
   note: async (obj, { id }, { models }) => {
     const note = await models.Note.findById(id)
       .populate('author')
       .populate('favoritedBy');
+
     return note;
   },
   notesByAuthor: async (obj, { id }, { models }) => {
     const notes = await models.Note.find({ author: id })
       .populate('author')
-      .populate('favoritedBy');
+      .populate('favoritedBy')
+      .sort({ _id: -1 });
 
     return notes;
   },
