@@ -1,25 +1,29 @@
+export const noteTypeResolvers = {
+  author: async (note, args, { models }) => {
+    const noteAuthor = await models.User.findById(note.author);
+    return noteAuthor;
+  },
+  favoritedBy: async (note, args, { models }) => {
+    const favoriters = await models.User.find({ _id: { $in: note.favoritedBy } });
+    return favoriters;
+  },
+};
+
 export const noteQueries = {
   notes: async (obj, args, { models }) => {
     const notes = await models.Note.find({})
-      .populate('author')
-      .populate('favoritedBy')
       .limit(10)
       .sort({ _id: -1 });
 
     return notes;
   },
   note: async (obj, { id }, { models }) => {
-    const note = await models.Note.findById(id)
-      .populate('author')
-      .populate('favoritedBy');
+    const note = await models.Note.findById(id);
 
     return note;
   },
   notesByAuthor: async (obj, { id }, { models }) => {
-    const notes = await models.Note.find({ author: id })
-      .populate('author')
-      .populate('favoritedBy')
-      .sort({ _id: -1 });
+    const notes = await models.Note.find({ author: id }).sort({ _id: -1 });
 
     return notes;
   },
@@ -34,8 +38,6 @@ export const noteQueries = {
     // if the cursor is not provided, the query will fetch the latest ten notes
     // sorted by the latest based on _id
     let notes = await models.Note.find(cursorQuery)
-      .populate('author')
-      .populate('favoritedBy')
       .sort({ _id: -1 })
       .limit(limit + 1);
     // if the returned notes are greater than the limit

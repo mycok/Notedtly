@@ -22,14 +22,6 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  notes: [{
-    type: Schema.ObjectId,
-    ref: 'Note',
-  }],
-  favorites: [{
-    type: Schema.ObjectId,
-    ref: 'Note',
-  }],
 }, { timestamps: true });
 
 export const User = model('User', UserSchema);
